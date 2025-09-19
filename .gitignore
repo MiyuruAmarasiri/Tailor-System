@@ -1,13 +1,18 @@
+# Project/IDE/OS/Secrets
+docker-compose.yml
+favicon.ico
+.env
+.env.local
+qodana.yaml
+.idea/
+.vscode/
+.DS_Store
 # Include your project-specific ignores in this file
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 # Useful .gitignore templates: https://github.com/github/gitignore
 node_modules
 dist
 .cache
-docker-compose.yml
-favicon.ico
-.env
-.env.local
 
 # Logs
 logs
@@ -15,12 +20,6 @@ logs
 npm-debug.log*
 
 
-qodana.yaml
-
-.idea
-.vscode
-
-.DS_Store
 Thumbs.db
 *.iml
 *.swp
