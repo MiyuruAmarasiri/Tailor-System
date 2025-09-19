@@ -1276,7 +1276,7 @@ window.secureAdminAccess = async function() {
     const verificationCode = Math.floor(100000 + Math.random() * 900000);
     console.log('Verification Code:', verificationCode); // In production, send via SMS/Email
     
-    const userCode = prompt('Enter verification code (check console):');
+    const userCode = prompt('Enter verification code:');
     
     if (userCode === verificationCode.toString()) {
       SecuritySystem.logSecurityEvent('ADMIN_LOGIN_SUCCESS', {});
