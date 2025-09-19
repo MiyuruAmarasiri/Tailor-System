@@ -435,8 +435,8 @@
   </div>
 </div>
 
-<!-- External JavaScript Files for Enhanced Security -->
-<script src="js/app.js" defer></script>
+<!-- External JavaScript Files for Enhanced Security
+<script src="js/app.js" defer></script> -->
 
 <!-- Complete Application Script (unchanged) -->
 <script>
@@ -1151,6 +1151,146 @@
       overlay.classList.remove('show');
     }
   }  
+</script>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Basic input sanitization
+  window.sanitizeInput = function(input) {
+    if (typeof input !== 'string') return input;
+    return input.replace(/[<>]/g, '');
+  };
+  
+  // Basic XSS protection - only warn, don't block
+  const originalInnerHTML = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+  Object.defineProperty(Element.prototype, 'innerHTML', {
+    set: function(value) {
+      if (typeof value === 'string' && /<script/i.test(value)) {
+        console.warn('Potential script injection detected');
+      }
+      originalInnerHTML.set.call(this, value);
+    },
+    get: originalInnerHTML.get
+  });
+  
+  console.log('Security system initialized successfully');
+})();
+
+// NETWORK SECURITY
+
+function setupNetworkSecurity() {
+  // Monitor fetch and XHR
+  const originalFetch = window.fetch;
+  window.fetch = function(...args) {
+    const url = args[0];
+    if (SecuritySystem.isBlacklistedDomain(url)) {
+      SecuritySystem.logSecurityEvent('BLOCKED_REQUEST', { url });
+      return Promise.reject(new Error('Blocked by security policy'));
+    }
+    return originalFetch.apply(this, args);
+  };
+
+  const originalOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url, ...args) {
+    if (SecuritySystem.isBlacklistedDomain(url)) {
+      SecuritySystem.logSecurityEvent('BLOCKED_XHR', { url });
+      throw new Error('Blocked by security policy');
+    }
+    return originalOpen.apply(this, [method, url, ...args]);
+  };
+}
+
+function isBlacklistedDomain(url) {
+  const blacklist = [
+    'evil.com',
+    'malware.com',
+    'phishing.com'
+  ];
+
+  return blacklist.some(domain => url.includes(domain));
+}
+
+// Simple rate limiter for admin access
+window.RateLimiter = {
+  attempts: {},
+  check: function(action, limit = 3, windowTime = 300000) {
+    const now = Date.now();
+    if (!this.attempts[action]) {
+      this.attempts[action] = [];
+    }
+    
+    // Clean old attempts
+    this.attempts[action] = this.attempts[action].filter(time => now - time < windowTime);
+    
+    if (this.attempts[action].length >= limit) {
+      return false;
+    }
+    
+    this.attempts[action].push(now);
+    return true;
+  }
+};
+
+// Simple password hashing
+window.SecureAuth = {
+  hashPassword: async function(password) {
+    // Simple hash function (in production, use proper crypto)
+    let hash = 0;
+    for (let i = 0; i < password.length; i++) {
+      const char = password.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32-bit integer
+    }
+    return hash.toString();
+  }
+};
+
+// Simple security system for logging
+window.SecuritySystem = {
+  logSecurityEvent: function(type, data) {
+    console.log('Security Event:', type, data);
+  }
+};
+
+// Override the existing secureAdminAccess function with enhanced security
+window.secureAdminAccess = async function() {
+  // Rate limiting
+  if (!RateLimiter.check('admin_login', 3, 300000)) {
+    alert('Too many attempts. Please try again later.');
+    return;
+  }
+  
+  // Enhanced password prompt
+  const password = prompt('Enter admin password:');
+  
+  if (!password) return;
+  
+  // Hash and validate password
+  const hashedPassword = await SecureAuth.hashPassword(password);
+  const correctHash = await SecureAuth.hashPassword('happyhoneymoon'); // Change this password!
+  
+  if (hashedPassword === correctHash) {
+    // Additional verification
+    const verificationCode = Math.floor(100000 + Math.random() * 900000);
+    console.log('Verification Code:', verificationCode); // In production, send via SMS/Email
+    
+    const userCode = prompt('Enter verification code (check console):');
+    
+    if (userCode === verificationCode.toString()) {
+      SecuritySystem.logSecurityEvent('ADMIN_LOGIN_SUCCESS', {});
+      showAdminPanel();
+    } else {
+      SecuritySystem.logSecurityEvent('ADMIN_VERIFICATION_FAILED', {});
+      alert('Invalid verification code!');
+    }
+  } else {
+    SecuritySystem.logSecurityEvent('ADMIN_LOGIN_FAILED', {});
+    alert('Access denied!');
+  }
+};
+    
 </script>
 </body>
 </html>
