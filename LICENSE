@@ -1,0 +1,261 @@
+TAILOR SYSTEM - RESTRICTIVE PROPRIETARY LICENSE
+Version 1.0, January 2025
+
+Copyright (c) 2025 Miyuru Amarasiri
+All Rights Reserved.
+
+IMPORTANT: READ THIS LICENSE CAREFULLY BEFORE USING THIS SOFTWARE
+
+This software and associated documentation files (the "Software"), known as "Tailor System",
+is the exclusive property of Miyuru Amarasiri ("Licensor") and its authorized agencies under the following strict terms and conditions.
+
+================================================================================
+PREAMBLE
+================================================================================
+
+This License Agreement ("Agreement") governs the use of the Tailor System software, which has
+been specifically developed for Miyuru Amarasiri personal administrative purposes. Any use
+of this Software constitutes acceptance of all terms and conditions set forth in this Agreement.
+
+================================================================================
+SECTION 1: GRANT OF LICENSE
+================================================================================
+
+1.1 LIMITED LICENSE GRANT
+    Subject to the terms and conditions of this Agreement, the Licensor grants to Miyuru Amarasiri ONLY, a limited, non-exclusive, non-transferable, revocable license to use the Software solely for his peronal administrative purposes within the territory.
+
+1.2 SCOPE OF USE
+    This license permits ONLY:
+    - Internal use within Miyuru Amarasiri
+    - Use for official record-keeping and management
+    - Access by authorized personnel only
+
+================================================================================
+SECTION 2: PROHIBITED USES - STRICTLY FORBIDDEN
+================================================================================
+
+The following uses are STRICTLY PROHIBITED and constitute material breach of this Agreement:
+
+2.1 COMMERCIAL USE - PROHIBITED
+    ✗ The Software SHALL NOT be used for any commercial purpose
+    ✗ No fees may be charged for access to or use of the Software
+    ✗ The Software SHALL NOT be used in any revenue-generating capacity
+    ✗ The Software SHALL NOT be used to provide services to third parties
+
+2.2 DISTRIBUTION - PROHIBITED
+    ✗ The Software SHALL NOT be distributed, sublicensed, or transferred to any third party
+    ✗ The Software SHALL NOT be shared with non-governmental entities
+    ✗ The Software SHALL NOT be uploaded to public repositories or file-sharing platforms
+    ✗ The Software SHALL NOT be transmitted outside Sri Lankan government networks
+
+2.3 MODIFICATION - PROHIBITED
+    ✗ The Software SHALL NOT be modified, altered, or adapted in any way
+    ✗ No derivative works shall be created based on the Software
+    ✗ The Software SHALL NOT be reverse-engineered, decompiled, or disassembled
+    ✗ No attempts shall be made to derive the source code through any means
+
+2.4 PRIVATE USE - PROHIBITED
+    ✗ The Software SHALL NOT be used for personal or private purposes
+    ✗ The Software SHALL NOT be used by individuals outside their official capacity
+    ✗ The Software SHALL NOT be installed on personal devices
+    ✗ The Software SHALL NOT be accessed from non-governmental locations
+
+2.5 PATENT USE - PROHIBITED
+    ✗ This license does NOT grant any rights under any patents
+    ✗ No patent rights are transferred or licensed under this Agreement
+    ✗ The Software SHALL NOT be used to develop patentable inventions
+    ✗ Any patents arising from use of the Software remain with the Licensor
+
+2.6 TRADEMARK USE - PROHIBITED
+    ✗ No rights to use Licensor's trademarks, service marks, or trade names are granted
+    ✗ The name "Tailor System" SHALL NOT be used in any other products or services
+    ✗ No marketing or promotional use of the Software's name or branding is permitted
+    ✗ The Licensor's name SHALL NOT be used without explicit written permission
+
+================================================================================
+SECTION 3: MANDATORY CONDITIONS
+================================================================================
+
+The following conditions MUST be satisfied for any use of the Software:
+
+3.1 DISCLOSE SOURCE
+    • Complete source code MUST be disclosed to authorized Miyuru Amarasiri auditors upon request
+    • All technical documentation MUST be provided to designated to Miyuru Amarasiri
+    • System architecture and data flows MUST be fully transparent to security reviews
+    • Any security vulnerabilities discovered MUST be immediately reported
+
+3.2 LICENSE AND COPYRIGHT NOTICE
+    • This license text MUST be included in all copies of the Software
+    • Copyright notices MUST NOT be removed or altered
+    • The following notice MUST appear in all copies:
+      "Copyright (c) 2025 Miyuru Amarasiri. All Rights Reserved.
+       Licensed exclusively to Miyuru Amarasiri."
+    • Attribution to the original author MUST be maintained
+
+3.3 NETWORK USE IS DISTRIBUTION
+    • Any deployment over a network constitutes distribution and is PROHIBITED
+    • Cloud deployments require explicit written permission from the Licensor
+    • Remote access MUST be limited to Miyuru Amarasiri only
+    • Internet-facing deployments are STRICTLY FORBIDDEN without written consent
+
+3.4 SAME LICENSE
+    • Any authorized copies MUST be distributed under this identical license
+    • No additional terms or conditions may be added
+    • No provisions of this license may be waived or modified
+    • Sublicensing is STRICTLY PROHIBITED
+
+3.5 STATE CHANGES
+    • ALL modifications (even if prohibited) MUST be documented and reported
+    • Configuration changes MUST be logged and auditable
+    • Updates or patches MUST be authorized by the Licensor
+    • Version control records MUST be maintained
+
+================================================================================
+SECTION 4: WARRANTY DISCLAIMER
+================================================================================
+
+4.1 NO WARRANTY
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. IN NO EVENT
+    SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES,
+    OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+    ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+
+4.2 NO GUARANTEE
+    The Licensor does NOT guarantee that:
+    - The Software will meet specific requirements
+    - The Software will be uninterrupted or error-free
+    - Defects will be corrected
+    - The Software is free of viruses or harmful components
+
+================================================================================
+SECTION 5: LIMITATION OF LIABILITY
+================================================================================
+
+5.1 NO LIABILITY
+    IN NO EVENT SHALL MIYURU AMARASIRI BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+    OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+5.2 INDEMNIFICATION
+    Miyuru Amarasiri agrees to indemnify and hold harmless the Licensor
+    from any claims, damages, or liabilities arising from the use of the Software.
+
+================================================================================
+SECTION 6: TERMINATION
+================================================================================
+
+6.1 TERMINATION CONDITIONS
+    This license is effective until terminated. The license will terminate automatically:
+    - Upon any breach of this Agreement
+    - Upon unauthorized use or distribution
+    - Upon attempted modification of the Software
+    - At the sole discretion of the Licensor with 30 days written notice
+
+6.2 EFFECT OF TERMINATION
+    Upon termination:
+    - All rights granted under this license cease immediately
+    - All copies of the Software must be destroyed
+    - All data must be securely deleted
+    - Written confirmation of destruction must be provided to the Licensor
+
+================================================================================
+SECTION 7: AUDIT RIGHTS
+================================================================================
+
+7.1 The Licensor reserves the right to audit the use of the Software to ensure
+    compliance with this Agreement.
+
+7.2 Miyuru Amarasiri must maintain accurate records of all installations
+    and uses of the Software.
+
+7.3 Audit records must be retained for a minimum of seven (7) years.
+
+================================================================================
+SECTION 8: GOVERNING LAW AND JURISDICTION
+================================================================================
+
+8.1 GOVERNING LAW
+    This Agreement shall be governed by and construed in accordance with the laws
+    of the Democratic Socialist Republic of Sri Lanka.
+
+8.2 JURISDICTION
+    Any disputes arising under this Agreement shall be subject to the exclusive
+    jurisdiction of the courts of Sri Lanka, specifically the District Court of
+    Colombo.
+
+8.3 DISPUTE RESOLUTION
+    Prior to litigation, parties agree to attempt good faith negotiation and
+    mediation through the Sri Lanka Mediation Centre.
+
+================================================================================
+SECTION 9: GENERAL PROVISIONS
+================================================================================
+
+9.1 ENTIRE AGREEMENT
+    This Agreement constitutes the entire agreement between the parties and
+    supersedes all prior negotiations, representations, and agreements.
+
+9.2 SEVERABILITY
+    If any provision is held invalid or unenforceable, the remaining provisions
+    shall continue in full force and effect.
+
+9.3 NO WAIVER
+    Failure to enforce any provision shall not constitute a waiver of future
+    enforcement of that or any other provision.
+
+9.4 ASSIGNMENT
+    This Agreement may NOT be assigned or transferred without the written
+    consent of the Licensor.
+
+9.5 SURVIVAL
+    Sections 2, 4, 5, 7, and 8 shall survive any termination of this Agreement.
+
+================================================================================
+SECTION 10: CONTACT INFORMATION
+================================================================================
+
+For licensing inquiries, compliance questions, or to report violations:
+
+Licensor: Miyuru Amarasiri
+Email: miyubhashi2002@gmail.com
+Project: Tailor System
+Repository: Private - Access Restricted
+
+================================================================================
+SECTION 11: ACCEPTANCE
+================================================================================
+
+BY USING THIS SOFTWARE, YOU ACKNOWLEDGE THAT YOU HAVE READ THIS AGREEMENT,
+UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS TERMS AND CONDITIONS. IF YOU DO
+NOT AGREE TO THESE TERMS, YOU MUST NOT USE THE SOFTWARE.
+
+================================================================================
+SECTION 12: SIGNATURES
+================================================================================
+
+This Agreement may be executed in counterparts and electronic signatures shall
+be deemed original signatures.
+
+LICENSOR:
+_______________________________
+Miyuru Amarasiri
+Title: Undergraduate / CA sri Lanka Student
+Date: January 2025
+
+================================================================================
+END OF LICENSE AGREEMENT
+================================================================================
+
+NOTICE: This is a legally binding document. Violation of any terms may result
+in immediate termination of license, legal action, and claims for damages.
+Any unauthorized use, distribution, or modification is strictly prohibited
+and may be prosecuted to the fullest extent of the law.
+
+© 2025 Miyuru Amarasiri. All Rights Reserved.
