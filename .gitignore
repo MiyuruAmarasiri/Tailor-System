@@ -8,6 +8,11 @@ qodana.yaml
 .idea/
 .vscode/
 .DS_Store
+.gitattributes
+favicon.ico
+icon.png
+icon.svg
+identifier.sqlite
 # Include your project-specific ignores in this file
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 # Useful .gitignore templates: https://github.com/github/gitignore
