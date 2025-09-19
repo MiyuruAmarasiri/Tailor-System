@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="Pragma" content="no-cache" />
+
+
+  <!-- SECURITY HEADERS -->
+  <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://unpkg.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        connect-src 'self';
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+        upgrade-insecure-requests;
+    ">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Miyuru Amarasiri">
+  <meta name="copyright" content="Miyuru Amarasiri">
+  <meta name="publisher" content="Miyuru Amarasiri">
+  <meta name="keywords" content="Miyuru Amarasiri, Secure Tailor Order Management System">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <meta name="description" content="Secure Tailor Order Management System">
+  <meta name="theme-color" content="#1e3a8a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="https://govpay.lk/sl-flag.svg" type="image/svg+xml">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Tailor System</title>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen font-sans antialiased">
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay">
+  <div class="bg-white rounded-lg p-6 shadow-xl max-w-sm mx-4">
+    <div class="flex items-center space-x-3">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <span class="text-gray-700 font-medium">Processing...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main Application -->
+<div id="mainApp">
+
+  <!-- Navigation Header - Improved for mobile -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-blue-800/30">
+    <nav class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo - Responsive sizing -->
+        <div class="flex items-center space-x-2 sm:space-x-3 cursor-pointer" onclick="returnToSearch()">
+          <img src="https://govpay.lk/sl-flag.svg" alt="Sri Lanka Flag" class="w-5 h-3 sm:w-6 sm:h-4" />
+          <div>
+            <h1 class="text-base sm:text-xl font-bold text-white">TAILOR SYSTEM</h1>
+            <p class="text-xs text-blue-300 hidden sm:block">Secure Order System v2.0</p>
+          </div>
+        </div>
+
+        <!-- Right side - Status and Admin (Hidden on mobile for admin button) -->
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <div class="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1 bg-green-500/20 rounded-full">
+            <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs sm:text-sm">Secure</span>
+          </div>
+
+          <!-- Admin Button - Hidden on mobile devices -->
+          <button onclick="secureAdminAccess()" class="hidden sm:flex px-4 py-2 bg-red-600/80 hover:bg-red-700 text-white rounded items-center space-x-2 transition-colors">
+            <span>Admin</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- VIEW 1: Search View - Improved mobile layout -->
+  <div id="searchView" class="view active">
+    <section class="min-h-screen flex items-center justify-center px-4 py-20">
+      <div class="container mx-auto max-w-4xl">
+        <div class="text-center mb-6 sm:mb-8">
+          <div class="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full mb-6 sm:mb-8">
+            <span class="relative flex h-2 w-2 mr-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+            </span>
+            <span class="text-purple-300 text-xs sm:text-sm font-medium">Real-Time</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">
+            Secure Order Tracking
+          </h1>
+          <p class="text-blue-300 text-sm sm:text-base">Enter customer name or number to search</p>
+        </div>
+
+        <!-- Enhanced Search Card -->
+        <div class="bg-white/95 backdrop-blur rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10">
+          <form id="searchForm" onsubmit="return handleSecureSearch(event);">
+            <div class="search-container">
+              <div class="search-input-wrapper">
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="search-input"
+                  placeholder=""
+                  autocomplete="off"
+                  required
+                >
+                <svg class="search-icon w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <button type="submit" class="search-button">
+                  <span class="hidden sm:inline">Search</span>
+                  <span class="sm:hidden">Search</span>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div id="searchError" class="hidden mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+            <p class="text-red-600 text-sm"></p>
+          </div>
+
+          <!-- Quick Access - Improved mobile layout -->
+          <div class="mt-6 pt-6 border-t border-gray-200">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-medium text-gray-500">Quick Access</span>
+              <span class="text-xs text-gray-400">Records: <span id="customerCount">0</span></span>
+            </div>
+            <div id="quickAccessButtons" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+
+        <!-- Mobile Admin Access - Only visible on mobile -->
+<!--        <div class="sm:hidden mt-6 text-center">-->
+<!--          <button onclick="secureAdminAccess()" class="inline-flex items-center px-6 py-3 bg-red-600/80 hover:bg-red-700 text-white rounded-lg transition-colors">-->
+<!--            <span>Admin Access</span>-->
+<!--          </button>-->
+<!--        </div>-->
+      </div>
+    </section>
+  </div>
+
+  <!-- VIEW 2: Results View - Improved mobile layout -->
+  <div id="resultsView" class="view">
+    <section class="min-h-screen pt-20 pb-8">
+      <div class="container mx-auto px-4 py-6 sm:py-8">
+        <button onclick="returnToSearch()" class="mb-4 sm:mb-6 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          <span>New Search</span>
+        </button>
+
+        <div id="customerInfo" class="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6"></div>
+
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">Order History</h3>
+        <div id="ordersContainer" class="space-y-3 sm:space-y-4"></div>
+
+        <div id="noOrders" class="hidden bg-white rounded-xl p-8 sm:p-12 text-center shadow-lg">
+          <p class="text-lg sm:text-xl text-gray-600">No orders found for this customer</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- VIEW 3: Admin Panel - Responsive improvements -->
+  <div id="adminView" class="view">
+    <section class="min-h-screen pt-20 pb-8">
+      <div class="container mx-auto px-4 py-6 sm:py-8">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-3 sm:space-y-0">
+          <h1 class="text-2xl sm:text-3xl font-bold text-white">Admin Dashboard</h1>
+          <button onclick="returnToSearch()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg">
+            Close
+          </button>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6">
+          <!-- Tab Navigation - Scrollable on mobile -->
+          <div class="flex space-x-2 sm:space-x-4 mb-6 border-b overflow-x-auto">
+            <button id="customersTab" onclick="showAdminSection('customers')" class="admin-tab px-3 sm:px-4 py-2 text-blue-600 border-b-2 border-blue-600 font-medium whitespace-nowrap text-sm sm:text-base">
+              Customers
+            </button>
+            <button id="ordersTab" onclick="showAdminSection('orders')" class="admin-tab px-3 sm:px-4 py-2 text-gray-600 hover:text-gray-800 whitespace-nowrap text-sm sm:text-base">
+              Orders
+            </button>
+            <button id="databaseTab" onclick="showAdminSection('database')" class="admin-tab px-3 sm:px-4 py-2 text-gray-600 hover:text-gray-800 whitespace-nowrap text-sm sm:text-base">
+              Database
+            </button>
+          </div>
+
+          <!-- CUSTOMERS SECTION - Mobile optimized -->
+          <div id="customersSection" class="admin-section active">
+            <h3 class="text-lg sm:text-xl font-bold mb-4">Add/Edit Customer</h3>
+
+            <div class="bg-gray-50 rounded-lg p-4 mb-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="hidden" id="editCustomerId" value="">
+
+                <div class="col-span-1">
+                  <label class="text-sm text-gray-600 font-medium">Full Name *</label>
+                  <input type="text" id="newCustomerName" placeholder="John Doe"
+                         class="mt-1 w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
+                </div>
+
+                <div class="col-span-1">
+                  <label class="text-sm text-gray-600 font-medium">Phone Number *</label>
+                  <input type="text" id="newCustomerPhone" placeholder="555-0123"
+                         class="mt-1 w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
+                </div>
+
+                <div class="col-span-1">
+                  <label class="text-sm text-gray-600 font-medium">Email Address</label>
+                  <input type="email" id="newCustomerEmail" placeholder="john@example.com"
+                         class="mt-1 w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
+                </div>
+
+                <div class="col-span-1">
+                  <label class="text-sm text-gray-600 font-medium">Address</label>
+                  <input type="text" id="newCustomerAddress" placeholder="123 Main St"
+                         class="mt-1 w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
+                </div>
+
+                <div class="col-span-1 md:col-span-1 flex items-end">
+                  <label class="flex items-center space-x-2">
+                    <input type="checkbox" id="newCustomerVIP" class="w-4 h-4 text-blue-600 rounded">
+                    <span class="text-sm font-medium text-gray-700">VIP Customer</span>
+                  </label>
+                </div>
+
+                <div class="col-span-1 md:col-span-1 flex items-end space-x-2">
+                  <button id="customerSubmitBtn" onclick="addOrUpdateCustomer()"
+                          class="px-4 sm:px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base">
+                    Add Customer
+                  </button>
+                  <button id="customerCancelBtn" onclick="cancelCustomerEdit()"
+                          class="hidden px-4 sm:px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm sm:text-base">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-lg sm:text-xl font-bold mb-4">Current Customers</h3>
+            <div id="customersList" class="space-y-2 max-h-96 overflow-y-auto"></div>
+          </div>
+
+          <!-- ORDERS SECTION - Mobile optimized -->
+          <div id="ordersSection" class="admin-section">
+            <h3 class="text-lg sm:text-xl font-bold mb-4">Add/Edit Order</h3>
+
+            <div class="bg-gray-50 rounded-lg p-4 mb-6">
+              <!-- Customer Selection -->
+              <div class="mb-4 p-3 sm:p-4 bg-blue-50 rounded-lg">
+                <label class="text-sm font-semibold text-blue-900">Select Customer *</label>
+                <select id="orderCustomerId" onchange="autoFillCustomerDefaults()"
+                        class="mt-1 w-full px-3 sm:px-4 py-2 border border-blue-300 rounded-lg text-sm sm:text-base">
+                  <option value="">Select Customer</option>
+                </select>
+                <div id="selectedCustomerInfo" class="hidden mt-3 p-3 bg-white rounded">
+                  <div id="customerInfoDisplay" class="text-sm"></div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="hidden" id="editOrderId" value="">
+
+                <div>
+                  <label class="text-xs text-gray-600">Order Number *</label>
+                  <div class="flex space-x-2">
+                    <input type="text" id="orderNumber" placeholder="ORD-2025-XXX"
+                           class="flex-1 px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                    <button onclick="generateOrderNumber()"
+                            class="px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm">
+                      Auto
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Item Description *</label>
+                  <input type="text" id="orderDescription" placeholder="Custom Suit"
+                         class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Fabric Type</label>
+                  <input type="text" id="orderFabric" placeholder="Premium Wool"
+                         class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Measurements</label>
+                  <input type="text" id="orderMeasurements" placeholder="Chest: 42, Waist: 34"
+                         class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Craftsman</label>
+                  <input type="text" id="orderCraftsman" placeholder="Master Tailor"
+                         class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Status</label>
+                  <select id="orderStatus" class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                    <option value="pending">Pending</option>
+                    <option value="scheduled">Scheduled</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="delivered">Delivered</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Priority</label>
+                  <select id="orderPriority" class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Price ($)</label>
+                  <input type="number" id="orderPrice" placeholder="0.00" step="0.01"
+                         class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                </div>
+
+                <div>
+                  <label class="text-xs text-gray-600">Due Date</label>
+                  <input type="date" id="orderDueDate" class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base">
+                </div>
+
+                <div class="md:col-span-2">
+                  <label class="text-xs text-gray-600">Notes</label>
+                  <textarea id="orderNotes" placeholder="Additional notes..."
+                            class="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base" rows="2"></textarea>
+                </div>
+
+                <div class="md:col-span-2 flex flex-wrap gap-2">
+                  <button id="orderSubmitBtn" onclick="addOrUpdateOrder()"
+                          class="px-4 sm:px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm sm:text-base">
+                    Add Order
+                  </button>
+                  <button id="orderCancelBtn" onclick="cancelOrderEdit()"
+                          class="hidden px-4 sm:px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm sm:text-base">
+                    Cancel
+                  </button>
+                  <button onclick="clearOrderForm()"
+                          class="px-4 sm:px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 text-sm sm:text-base">
+                    Clear Form
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-lg sm:text-xl font-bold mb-4">Current Orders</h3>
+            <div id="ordersList" class="space-y-2 max-h-96 overflow-y-auto"></div>
+          </div>
+
+          <!-- DATABASE SECTION - Mobile optimized -->
+          <div id="databaseSection" class="admin-section">
+            <h3 class="text-lg sm:text-xl font-bold mb-4">Database Management</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 sm:p-6 bg-gray-50 rounded-lg">
+                <h4 class="font-semibold mb-2">Export Database</h4>
+                <p class="text-sm text-gray-600 mb-3">Download all data as JSON</p>
+                <button onclick="exportDatabase()"
+                        class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm sm:text-base">
+                  Export Database
+                </button>
+              </div>
+
+              <div class="p-4 sm:p-6 bg-gray-50 rounded-lg">
+                <h4 class="font-semibold mb-2">Clear Database</h4>
+                <p class="text-sm text-gray-600 mb-3">Remove all data permanently</p>
+                <button onclick="clearDatabase()"
+                        class="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm sm:text-base">
+                  Clear All Data
+                </button>
+              </div>
+
+              <div class="p-4 sm:p-6 bg-gray-50 rounded-lg">
+                <h4 class="font-semibold mb-2">Load Sample Data</h4>
+                <p class="text-sm text-gray-600 mb-3">Add demo customers and orders</p>
+                <button onclick="loadMoreSampleData()"
+                        class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm sm:text-base">
+                  Load Sample Data
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Complete Application Script (unchanged) -->
+<script>
+  'use strict';
+
+  // Database System
+  class DatabaseSystem {
+    constructor() {
+      this.db = null;
+      this.dbName = 'SecureOrderDB';
+      this.dbVersion = 2;
+      this.initDatabase();
+    }
+
+    async initDatabase() {
+      const request = indexedDB.open(this.dbName, this.dbVersion);
+
+      request.onsuccess = () => {
+        this.db = request.result;
+        this.loadInitialData();
+      };
+
+      request.onupgradeneeded = (event) => {
+        this.db = event.target.result;
+
+        if (!this.db.objectStoreNames.contains('customers')) {
+          const customers = this.db.createObjectStore('customers', {
+            keyPath: 'id',
+            autoIncrement: true
+          });
+          customers.createIndex('phone', 'phone', { unique: true });
+        }
+
+        if (!this.db.objectStoreNames.contains('orders')) {
+          const orders = this.db.createObjectStore('orders', {
+            keyPath: 'id',
+            autoIncrement: true
+          });
+          orders.createIndex('customerId', 'customerId', { unique: false });
+        }
+      };
+    }
+
+    async loadInitialData() {
+      await this.updateQuickAccess();
+      await this.updateRecordCount();
+      await this.loadCustomersList();
+      await this.loadOrdersList();
+
+      const customers = await this.getAllCustomers();
+      if (customers.length === 0) {
+        await this.loadSampleData();
+      }
+    }
+
+    async loadSampleData() {
+      const sampleCustomers = [
+        { name: 'John Smith', phone: '555-0001', email: 'john@example.com', address: '123 Main St', vip: true },
+        { name: 'Jane Doe', phone: '555-0002', email: 'jane@example.com', address: '456 Oak Ave', vip: false },
+        { name: 'Robert Johnson', phone: '555-0003', email: 'robert@example.com', address: '789 Pine Rd', vip: true }
+      ];
+
+      for (const customer of sampleCustomers) {
+        const customerId = await this.addCustomer(customer);
+
+        await this.addOrder({
+          customerId: customerId,
+          orderNumber: `ORD-2025-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
+          itemDescription: 'Custom Suit',
+          fabric: customer.vip ? 'Premium Italian Wool' : 'Standard Wool',
+          measurements: 'Chest: 42", Waist: 34"',
+          craftsman: customer.vip ? 'Master Craftsman' : 'Senior Tailor',
+          status: 'in-progress',
+          priority: customer.vip ? 'high' : 'normal',
+          price: customer.vip ? 899.99 : 599.99,
+          dueDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+          notes: 'Customer preferences noted'
+        });
+      }
+
+      await this.loadInitialData();
+    }
+
+    async getAllCustomers() {
+      return new Promise((resolve) => {
+        if (!this.db) {
+          resolve([]);
+          return;
+        }
+
+        const transaction = this.db.transaction(['customers'], 'readonly');
+        const store = transaction.objectStore('customers');
+        const request = store.getAll();
+        request.onsuccess = () => resolve(request.result || []);
+      });
+    }
+
+    async getAllOrders() {
+      return new Promise((resolve) => {
+        if (!this.db) {
+          resolve([]);
+          return;
+        }
+
+        const transaction = this.db.transaction(['orders'], 'readonly');
+        const store = transaction.objectStore('orders');
+        const request = store.getAll();
+        request.onsuccess = () => resolve(request.result || []);
+      });
+    }
+
+    async getCustomerById(id) {
+      return new Promise((resolve) => {
+        const transaction = this.db.transaction(['customers'], 'readonly');
+        const store = transaction.objectStore('customers');
+        const request = store.get(id);
+        request.onsuccess = () => resolve(request.result);
+      });
+    }
+
+    async getOrderById(id) {
+      return new Promise((resolve) => {
+        const transaction = this.db.transaction(['orders'], 'readonly');
+        const store = transaction.objectStore('orders');
+        const request = store.get(id);
+        request.onsuccess = () => resolve(request.result);
+      });
+    }
+
+    async addCustomer(data) {
+      return new Promise((resolve, reject) => {
+        const transaction = this.db.transaction(['customers'], 'readwrite');
+        const store = transaction.objectStore('customers');
+        const request = store.add(data);
+        request.onsuccess = () => {
+          this.loadInitialData();
+          resolve(request.result);
+        };
+        request.onerror = () => reject('Failed to add customer');
+      });
+    }
+
+    async updateCustomer(id, data) {
+      return new Promise((resolve, reject) => {
+        const transaction = this.db.transaction(['customers'], 'readwrite');
+        const store = transaction.objectStore('customers');
+        data.id = id;
+        const request = store.put(data);
+        request.onsuccess = () => {
+          this.loadInitialData();
+          resolve(request.result);
+        };
+        request.onerror = () => reject('Failed to update customer');
+      });
+    }
+
+    async deleteCustomer(id) {
+      const transaction = this.db.transaction(['customers', 'orders'], 'readwrite');
+      const customerStore = transaction.objectStore('customers');
+      const orderStore = transaction.objectStore('orders');
+
+      customerStore.delete(id);
+
+      const orders = await this.getAllOrders();
+      orders.filter(o => o.customerId === id).forEach(order => {
+        orderStore.delete(order.id);
+      });
+
+      this.loadInitialData();
+    }
+
+    async addOrder(data) {
+      return new Promise((resolve, reject) => {
+        const transaction = this.db.transaction(['orders'], 'readwrite');
+        const store = transaction.objectStore('orders');
+        const request = store.add(data);
+        request.onsuccess = () => {
+          this.loadInitialData();
+          resolve(request.result);
+        };
+        request.onerror = () => reject('Failed to add order');
+      });
+    }
+
+    async updateOrder(id, data) {
+      return new Promise((resolve, reject) => {
+        const transaction = this.db.transaction(['orders'], 'readwrite');
+        const store = transaction.objectStore('orders');
+        data.id = id;
+        const request = store.put(data);
+        request.onsuccess = () => {
+          this.loadInitialData();
+          resolve(request.result);
+        };
+        request.onerror = () => reject('Failed to update order');
+      });
+    }
+
+    async deleteOrder(id) {
+      const transaction = this.db.transaction(['orders'], 'readwrite');
+      const store = transaction.objectStore('orders');
+      store.delete(id);
+      this.loadInitialData();
+    }
+
+    async loadCustomersList() {
+      const customers = await this.getAllCustomers();
+      const container = document.getElementById('customersList');
+      const select = document.getElementById('orderCustomerId');
+
+      if (!container) return;
+
+      if (select) {
+        select.innerHTML = '<option value="">Select Customer</option>';
+        customers.forEach(customer => {
+          const option = document.createElement('option');
+          option.value = customer.id;
+          option.textContent = `${customer.name} (${customer.phone})${customer.vip ? ' ⭐' : ''}`;
+          select.appendChild(option);
+        });
+      }
+
+      if (customers.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 text-center py-4">No customers found. Add a customer above.</p>';
+      } else {
+        container.innerHTML = customers.map(customer => `
+                        <div class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
+                                <div class="flex-1">
+                                    <div class="flex items-center">
+                                        <strong class="text-gray-900">${customer.name}</strong>
+                                        ${customer.vip ? '<span class="ml-2 text-yellow-500">⭐ VIP</span>' : ''}
+                                    </div>
+                                    <div class="text-sm text-gray-600 mt-1">
+                                        📞 ${customer.phone} ${customer.email ? `| 📧 ${customer.email}` : ''}
+                                    </div>
+                                    ${customer.address ? `<div class="text-xs text-gray-500 mt-1">📍 ${customer.address}</div>` : ''}
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button onclick="editCustomer(${customer.id})"
+                                            class="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600">
+                                        Edit
+                                    </button>
+                                    <button onclick="deleteCustomerConfirm(${customer.id})"
+                                            class="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+      }
+    }
+
+    async loadOrdersList() {
+      const orders = await this.getAllOrders();
+      const customers = await this.getAllCustomers();
+      const container = document.getElementById('ordersList');
+
+      if (!container) return;
+
+      if (orders.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 text-center py-4">No orders found. Add an order above.</p>';
+      } else {
+        container.innerHTML = orders.map(order => {
+          const customer = customers.find(c => c.id === order.customerId);
+
+          const statusColors = {
+            'pending': 'bg-yellow-100 text-yellow-800',
+            'scheduled': 'bg-blue-100 text-blue-800',
+            'in-progress': 'bg-purple-100 text-purple-800',
+            'completed': 'bg-green-100 text-green-800',
+            'delivered': 'bg-gray-100 text-gray-800'
+          };
+
+          return `
+                            <div class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div class="flex flex-col sm:flex-row justify-between items-start">
+                                    <div class="flex-1 mb-2 sm:mb-0">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <strong class="text-gray-900">${order.orderNumber}</strong>
+                                            <span class="px-2 py-1 ${statusColors[order.status]} rounded-full text-xs font-medium">
+                                                ${order.status.replace('-', ' ').toUpperCase()}
+                                            </span>
+                                        </div>
+                                        <div class="text-sm text-gray-600 mt-1">
+                                            ${order.itemDescription} | Customer: ${customer ? customer.name : 'Unknown'}
+                                        </div>
+                                        <div class="text-sm text-gray-600 mt-1">
+                                            Priority: <span class="font-semibold">${order.priority}</span> |
+                                            Price: <span class="font-semibold">$${order.price}</span>
+                                            ${order.dueDate ? ` | Due: ${new Date(order.dueDate).toLocaleDateString()}` : ''}
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button onclick="editOrder(${order.id})"
+                                                class="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600">
+                                            Edit
+                                        </button>
+                                        <button onclick="deleteOrderConfirm(${order.id})"
+                                                class="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+        }).join('');
+      }
+    }
+
+    async updateQuickAccess() {
+      const customers = await this.getAllCustomers();
+      const container = document.getElementById('quickAccessButtons');
+
+      if (!container) return;
+
+      if (customers.length === 0) {
+        container.innerHTML = '<p class="text-sm text-gray-500">No customers yet. Use Admin panel to add.</p>';
+      } else {
+        container.innerHTML = customers.slice(0, 5).map(c =>
+          `<button onclick="quickSearch('${c.name}')" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded text-sm transition-colors">${c.name}</button>`
+        ).join('');
+      }
+    }
+
+    async updateRecordCount() {
+      const customers = await this.getAllCustomers();
+      const element = document.getElementById('customerCount');
+      if (element) element.textContent = customers.length;
+    }
+
+    async searchCustomers(query) {
+      const customers = await this.getAllCustomers();
+      const searchTerm = query.toLowerCase();
+
+      return customers.filter(customer =>
+        customer.name.toLowerCase().includes(searchTerm) ||
+        customer.phone.includes(searchTerm)
+      );
+    }
+
+    async getCustomerOrders(customerId) {
+      const orders = await this.getAllOrders();
+      return orders.filter(order => order.customerId === customerId);
+    }
+
+    async clearDatabase() {
+      const customerTx = this.db.transaction(['customers'], 'readwrite');
+      const orderTx = this.db.transaction(['orders'], 'readwrite');
+      customerTx.objectStore('customers').clear();
+      orderTx.objectStore('orders').clear();
+      this.loadInitialData();
+    }
+
+    async exportDatabase() {
+      const customers = await this.getAllCustomers();
+      const orders = await this.getAllOrders();
+
+      const data = {
+        exportDate: new Date().toISOString(),
+        version: '2.0.0',
+        customers: customers,
+        orders: orders
+      };
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `database-export-${Date.now()}.json`;
+      a.click();
+    }
+  }
+
+  // Initialize Database
+  let dbSystem;
+
+  // Initialize App
+  document.addEventListener('DOMContentLoaded', () => {
+    dbSystem = new DatabaseSystem();
+  });
+
+  // Search Functions
+  async function handleSecureSearch(event) {
+    event.preventDefault();
+
+    const input = document.getElementById('searchInput').value.trim();
+
+    if (input.length < 3) {
+      showError('Please enter at least 3 characters');
+      return false;
+    }
+
+    showLoading(true);
+
+    try {
+      const results = await dbSystem.searchCustomers(input);
+
+      if (results.length === 0) {
+        showError('No customers found');
+        showLoading(false);
+        return false;
+      }
+
+      await displayResults(results[0]);
+    } catch (error) {
+      showError('Search failed');
+    } finally {
+      showLoading(false);
+    }
+
+    return false;
+  }
+
+  async function displayResults(customer) {
+    const orders = await dbSystem.getCustomerOrders(customer.id);
+
+    const customerInfo = document.getElementById('customerInfo');
+    customerInfo.innerHTML = `
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold">${customer.name}</h2>
+                    <p class="text-gray-600">Phone: ${customer.phone}</p>
+                    ${customer.email ? `<p class="text-gray-600">Email: ${customer.email}</p>` : ''}
+                    ${customer.address ? `<p class="text-gray-600">Address: ${customer.address}</p>` : ''}
+                    ${customer.vip ? '<span class="text-yellow-500 font-bold">⭐ VIP Customer</span>' : ''}
+                </div>
+            `;
+
+    const ordersContainer = document.getElementById('ordersContainer');
+    const noOrdersDiv = document.getElementById('noOrders');
+
+    if (orders.length === 0) {
+      ordersContainer.innerHTML = '';
+      noOrdersDiv.classList.remove('hidden');
+    } else {
+      noOrdersDiv.classList.add('hidden');
+      ordersContainer.innerHTML = orders.map(order => `
+                    <div class="bg-white rounded-lg shadow p-4 sm:p-6">
+                        <h3 class="font-bold text-base sm:text-lg">${order.orderNumber}</h3>
+                        <p class="text-gray-600">${order.itemDescription}</p>
+                        <div class="mt-2 text-sm">
+                            <p>Status: <span class="font-semibold">${order.status}</span></p>
+                            <p>Price: <span class="font-semibold">$${order.price}</span></p>
+                            ${order.dueDate ? `<p>Due: ${new Date(order.dueDate).toLocaleDateString()}</p>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+    }
+
+    document.getElementById('searchView').classList.remove('active');
+    document.getElementById('resultsView').classList.add('active');
+    document.getElementById('searchInput').value = '';
+  }
+
+  function quickSearch(value) {
+    document.getElementById('searchInput').value = value;
+    document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+  }
+
+  // Customer Management
+  async function addOrUpdateCustomer() {
+    const id = document.getElementById('editCustomerId').value;
+    const data = {
+      name: document.getElementById('newCustomerName').value.trim(),
+      phone: document.getElementById('newCustomerPhone').value.trim(),
+      email: document.getElementById('newCustomerEmail').value.trim(),
+      address: document.getElementById('newCustomerAddress').value.trim(),
+      vip: document.getElementById('newCustomerVIP').checked
+    };
+
+    if (!data.name || !data.phone) {
+      alert('Name and Phone are required!');
+      return;
+    }
+
+    try {
+      if (id) {
+        await dbSystem.updateCustomer(parseInt(id), data);
+        alert('Customer updated successfully!');
+      } else {
+        await dbSystem.addCustomer(data);
+        alert('Customer added successfully!');
+      }
+      cancelCustomerEdit();
+    } catch (error) {
+      alert('Error: ' + error);
+    }
+  }
+
+  async function editCustomer(id) {
+    const customer = await dbSystem.getCustomerById(id);
+    if (customer) {
+      document.getElementById('editCustomerId').value = id;
+      document.getElementById('newCustomerName').value = customer.name;
+      document.getElementById('newCustomerPhone').value = customer.phone;
+      document.getElementById('newCustomerEmail').value = customer.email || '';
+      document.getElementById('newCustomerAddress').value = customer.address || '';
+      document.getElementById('newCustomerVIP').checked = customer.vip || false;
+
+      document.getElementById('customerSubmitBtn').textContent = 'Update Customer';
+      document.getElementById('customerCancelBtn').classList.remove('hidden');
+    }
+  }
+
+  function cancelCustomerEdit() {
+    document.getElementById('editCustomerId').value = '';
+    document.getElementById('newCustomerName').value = '';
+    document.getElementById('newCustomerPhone').value = '';
+    document.getElementById('newCustomerEmail').value = '';
+    document.getElementById('newCustomerAddress').value = '';
+    document.getElementById('newCustomerVIP').checked = false;
+
+    document.getElementById('customerSubmitBtn').textContent = 'Add Customer';
+    document.getElementById('customerCancelBtn').classList.add('hidden');
+  }
+
+  async function deleteCustomerConfirm(id) {
+    if (confirm('Delete this customer and all their orders?')) {
+      await dbSystem.deleteCustomer(id);
+      alert('Customer deleted!');
+    }
+  }
+
+  // Order Management
+  async function autoFillCustomerDefaults() {
+    const customerId = parseInt(document.getElementById('orderCustomerId').value);
+    const infoDiv = document.getElementById('selectedCustomerInfo');
+    const displayDiv = document.getElementById('customerInfoDisplay');
+
+    if (!customerId) {
+      infoDiv.classList.add('hidden');
+      return;
+    }
+
+    const customer = await dbSystem.getCustomerById(customerId);
+    if (customer) {
+      infoDiv.classList.remove('hidden');
+      displayDiv.innerHTML = `
+                    <strong>${customer.name}</strong> ${customer.vip ? '⭐ VIP' : ''}<br>
+                    Phone: ${customer.phone}<br>
+                    ${customer.email ? `Email: ${customer.email}` : ''}
+                `;
+    }
+  }
+
+  function generateOrderNumber() {
+    const date = new Date();
+    const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    document.getElementById('orderNumber').value = `ORD-${date.getFullYear()}-${random}`;
+  }
+
+  async function addOrUpdateOrder() {
+    const id = document.getElementById('editOrderId').value;
+    const data = {
+      customerId: parseInt(document.getElementById('orderCustomerId').value),
+      orderNumber: document.getElementById('orderNumber').value.trim(),
+      itemDescription: document.getElementById('orderDescription').value.trim(),
+      fabric: document.getElementById('orderFabric').value.trim(),
+      measurements: document.getElementById('orderMeasurements').value.trim(),
+      craftsman: document.getElementById('orderCraftsman').value.trim(),
+      status: document.getElementById('orderStatus').value,
+      priority: document.getElementById('orderPriority').value,
+      price: parseFloat(document.getElementById('orderPrice').value) || 0,
+      dueDate: document.getElementById('orderDueDate').value || null,
+      notes: document.getElementById('orderNotes').value.trim()
+    };
+
+    if (!data.customerId || !data.orderNumber || !data.itemDescription) {
+      alert('Customer, Order Number, and Item Description are required!');
+      return;
+    }
+
+    try {
+      if (id) {
+        await dbSystem.updateOrder(parseInt(id), data);
+        alert('Order updated successfully!');
+      } else {
+        await dbSystem.addOrder(data);
+        alert('Order added successfully!');
+      }
+      clearOrderForm();
+    } catch (error) {
+      alert('Error: ' + error);
+    }
+  }
+
+  async function editOrder(id) {
+    const order = await dbSystem.getOrderById(id);
+    if (order) {
+      document.getElementById('editOrderId').value = id;
+      document.getElementById('orderCustomerId').value = order.customerId;
+      document.getElementById('orderNumber').value = order.orderNumber;
+      document.getElementById('orderDescription').value = order.itemDescription;
+      document.getElementById('orderFabric').value = order.fabric || '';
+      document.getElementById('orderMeasurements').value = order.measurements || '';
+      document.getElementById('orderCraftsman').value = order.craftsman || '';
+      document.getElementById('orderStatus').value = order.status;
+      document.getElementById('orderPriority').value = order.priority;
+      document.getElementById('orderPrice').value = order.price;
+      document.getElementById('orderDueDate').value = order.dueDate ? order.dueDate.split('T')[0] : '';
+      document.getElementById('orderNotes').value = order.notes || '';
+
+      document.getElementById('orderSubmitBtn').textContent = 'Update Order';
+      document.getElementById('orderCancelBtn').classList.remove('hidden');
+
+      await autoFillCustomerDefaults();
+    }
+  }
+
+  function cancelOrderEdit() {
+    clearOrderForm();
+  }
+
+  function clearOrderForm() {
+    document.getElementById('editOrderId').value = '';
+    document.getElementById('orderCustomerId').value = '';
+    document.getElementById('orderNumber').value = '';
+    document.getElementById('orderDescription').value = '';
+    document.getElementById('orderFabric').value = '';
+    document.getElementById('orderMeasurements').value = '';
+    document.getElementById('orderCraftsman').value = '';
+    document.getElementById('orderStatus').value = 'pending';
+    document.getElementById('orderPriority').value = 'normal';
+    document.getElementById('orderPrice').value = '';
+    document.getElementById('orderDueDate').value = '';
+    document.getElementById('orderNotes').value = '';
+
+    document.getElementById('selectedCustomerInfo').classList.add('hidden');
+    document.getElementById('orderSubmitBtn').textContent = 'Add Order';
+    document.getElementById('orderCancelBtn').classList.add('hidden');
+  }
+
+  async function deleteOrderConfirm(id) {
+    if (confirm('Delete this order?')) {
+      await dbSystem.deleteOrder(id);
+      alert('Order deleted!');
+    }
+  }
+
+  // Database Management
+  async function exportDatabase() {
+    await dbSystem.exportDatabase();
+  }
+
+  async function clearDatabase() {
+    if (confirm('Delete ALL data? This cannot be undone!')) {
+      await dbSystem.clearDatabase();
+      alert('Database cleared!');
+    }
+  }
+
+  async function loadMoreSampleData() {
+    await dbSystem.loadSampleData();
+    alert('Sample data loaded!');
+  }
+
+  // Navigation
+  function returnToSearch() {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('searchView').classList.add('active');
+  }
+
+  function secureAdminAccess() {
+    const password = prompt('Enter admin password:');
+
+    if (password === 'happyhoneymoon') {
+      showAdminPanel();
+    } else {
+      alert('Access denied!');
+    }
+  }
+
+  async function showAdminPanel() {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('adminView').classList.add('active');
+
+    // Refresh all data when admin panel opens
+    await dbSystem.loadInitialData();
+  }
+
+  function showAdminSection(section) {
+    // Hide all sections
+    document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+
+    // Show selected section
+    document.getElementById(section + 'Section').classList.add('active');
+
+    // Update tab styles
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+      tab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+      tab.classList.add('text-gray-600');
+    });
+
+    document.getElementById(section + 'Tab').classList.remove('text-gray-600');
+    document.getElementById(section + 'Tab').classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+  }
+
+  // Utilities
+  function showError(message) {
+    const error = document.getElementById('searchError');
+    error.classList.remove('hidden');
+    error.querySelector('p').textContent = message;
+    setTimeout(() => error.classList.add('hidden'), 3000);
+  }
+
+  function showLoading(show) {
+    const overlay = document.getElementById('loadingOverlay');
+    if (show) {
+      overlay.classList.add('show');
+    } else {
+      overlay.classList.remove('show');
+    }
+  }  
+</script>
+</body>
+</html>

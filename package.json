@@ -1,0 +1,51 @@
+{
+  "name": "TailorSystem",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "keywords": [
+    ""
+  ],
+  "license": "MIT",
+  "author": "Miyuru Amarasiri",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
+    "dev": "webpack serve --config webpack.config.dev.js",
+    "serve": "webpack serve",
+    "watch": "webpack --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@eslint/js": "^9.8.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.21",
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.8.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.4",
+    "mini-css-extract-plugin": "^2.9.4",
+    "ngrok": "^5.0.0-beta.2",
+    "postcss-loader": "^8.2.0",
+    "sass": "^1.92.1",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.7",
+    "vite": "^5.4.0",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^5.10.0",
+    "workbox-webpack-plugin": "^7.3.0"
+  }
+}

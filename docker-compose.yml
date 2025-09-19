@@ -1,0 +1,35 @@
+# No version field needed for modern Docker Compose
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: tailor_system
+      POSTGRES_USER: tailor_admin
+      POSTGRES_PASSWORD: secure_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./src/database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./public:/app/public
+      - ./src:/app/src
+
+volumes:
+  postgres_data:
