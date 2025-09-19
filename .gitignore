@@ -1,3 +1,4 @@
+.gitattributes
 # Project/IDE/OS/Secrets
 docker-compose.yml
 favicon.ico
@@ -13,7 +14,7 @@ qodana.yaml
 node_modules
 dist
 .cache
-.gitattributes
+
 # Logs
 logs
 *.log
