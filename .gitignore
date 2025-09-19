@@ -13,7 +13,7 @@ qodana.yaml
 node_modules
 dist
 .cache
-
+.gitattributes
 # Logs
 logs
 *.log
