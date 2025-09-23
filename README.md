@@ -119,7 +119,7 @@ npm start
 
 Security isn't an afterthought – it's built into every layer:
 
-- **🔐 Multi-factor Authentication**: SMS and TOTP support
+- **🔐 Authentication**: Cloud Console
 - **🛡️ SQL Injection Prevention**: Parameterized queries everywhere
 - **🚫 XSS Protection**: Content Security Policy headers
 - **🔒 Data Encryption**: AES-256 for sensitive data at rest
