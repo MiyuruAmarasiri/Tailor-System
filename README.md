@@ -16,7 +16,7 @@ This isn't just another CRUD application. It's a thoughtfully architected system
 ```
 📋 Customer Management       🔧 Order Processing
 📏 Measurement Tracking      📊 Business Analytics  
-💰 Billing & Invoicing        📱 Mobile Responsive
+💰 Billing & Invoicing       📱 Mobile Responsive
 📦 Inventory Control         🔔 Smart Notifications
 📈 Reporting Dashboard       🔐 Secure Authentication
 ```
