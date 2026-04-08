@@ -13,6 +13,8 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -28,13 +30,18 @@ jobs:
         run: npm ci
 
       - name: Build project
-        run: npm run build
+        run: npm run build --if-present
 
-      - name: Run tests (if real tests are configured)
+      - name: Detect meaningful test script
+        id: test_script
         run: |
-          TEST_SCRIPT=$(node -p "require('./package.json').scripts && require('./package.json').scripts.test ? require('./package.json').scripts.test : ''")
-          if [ -z "$TEST_SCRIPT" ] || [ "$TEST_SCRIPT" = "echo \"Error: no test specified\" && exit 1" ]; then
-            echo "No meaningful test script configured; skipping tests."
-            exit 0
-          fi
-          npm test
+          TEST_ENABLED=$(node -e "const t=require('./package.json').scripts?.test; process.stdout.write(String(Boolean(t) && !t.includes('no test specified')))")
+          echo "enabled=$TEST_ENABLED" >> "$GITHUB_OUTPUT"
+
+      - name: Run tests
+        if: steps.test_script.outputs.enabled == 'true'
+        run: npm test
+
+      - name: Skip tests notice
+        if: steps.test_script.outputs.enabled != 'true'
+        run: echo "No meaningful test script configured; skipping tests."
